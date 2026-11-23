@@ -1,0 +1,64 @@
+:root { 
+    --med-blue: #0056b3; 
+    --light-blue: #e3f2fd; 
+    --emergency: #dc3545;
+    --success: #28a745; 
+    --dark: #1a2a3a; 
+    --gold: #ffc107;
+    --gray: #64748b;
+}
+
+body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f0f4f8; color: var(--dark); }
+
+/* Header & Logo */
+.hospital-header {
+    background: white; border-bottom: 4px solid var(--med-blue);
+    padding: 15px 40px; display: flex; justify-content: space-between; align-items: center;
+}
+.logo-area { display: flex; align-items: center; gap: 15px; }
+.plus-icon { color: var(--emergency); font-size: 2.2rem; animation: pulse 2s infinite; font-weight: bold; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.1); } }
+
+/* Navigation */
+nav { background: var(--dark); padding: 10px; display: flex; justify-content: center; gap: 10px; }
+nav button { 
+    padding: 12px 25px; cursor: pointer; border: none; border-radius: 6px;
+    background: #2c3e50; color: #cbd5e1; font-weight: 600; transition: 0.3s;
+}
+nav button.active { background: var(--med-blue); color: white; }
+
+/* Views & Cards */
+.container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+.view { display: none; animation: fadeIn 0.4s ease; }
+.view.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.card { 
+    background: white; padding: 30px; border-radius: 12px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 500px; margin: auto; 
+}
+
+/* Forms */
+input, select { width: 100%; padding: 12px; margin: 10px 0 20px 0; border: 1px solid #ced4da; border-radius: 8px; font-size: 1rem; }
+.btn-primary { width: 100%; padding: 15px; background: var(--med-blue); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+/* Ticket Slip */
+.ticket-slip { background: #f0fdf4; border: 2px dashed var(--success); text-align: center; padding: 20px; border-radius: 12px; margin-top: 15px; }
+.token-val { font-size: 5rem; font-weight: 900; color: var(--success); line-height: 1; }
+
+/* Admin Dashboard Tables */
+.dept-block { background: white; margin-bottom: 25px; border-radius: 10px; overflow: hidden; border: 1px solid #ddd; }
+.dept-title { background: var(--light-blue); padding: 15px 20px; font-weight: bold; color: var(--med-blue); display: flex; justify-content: space-between; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 15px; text-align: left; border-bottom: 1px solid #f1f1f1; }
+th { background: #f8f9fa; font-size: 0.8rem; color: var(--gray); text-transform: uppercase; }
+
+/* TV Screen */
+.tv-screen { background: var(--dark); color: white; height: 85vh; text-align: center; border-radius: 20px; display: flex; flex-direction: column; justify-content: center; border: 8px solid #2c3e50; }
+.token-huge { font-size: 15rem; color: var(--gold); font-weight: 900; margin: 0; }
+.tv-header { letter-spacing: 15px; color: var(--gray); font-size: 1.5rem; margin-bottom: 20px; }
+.tv-next-container { margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.05); }
+.tv-next-list { display: flex; justify-content: center; gap: 20px; }
+.next-item { background: #2c3e50; padding: 15px 30px; border-radius: 10px; border-left: 5px solid var(--med-blue); font-size: 2rem; font-weight: bold; }
+
+.hidden { display: none !important; }

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Care Hospital | Patient Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hospital-header">
+        <div class="logo-area">
+            <span class="plus-icon">✚</span>
+            <div>
+                <h1>CITY CARE HOSPITAL</h1>
+                <small id="dateTimeDisplay">Loading Date & Time...</small>
+            </div>
+        </div>
+        <div class="header-stats" id="headerStats">
+            </div>
+    </header>
+
+    <nav>
+        <button onclick="showView('reg')" id="btn-reg" class="active">Patient Registration</button>
+        <button onclick="showView('tv')" id="btn-tv">Live TV Display</button>
+        <button onclick="showView('admin')" id="btn-admin">Doctor Dashboard</button>
+    </nav>
+
+    <main class="container">
+        
+        <section id="view-reg" class="view active">
+            <div class="card registration-card">
+                <h2>New Patient Entry</h2>
+                <p>Please provide details for your unique treatment token.</p>
+                <hr>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="pName" placeholder="Enter patient name">
+                    
+                    <label>Mobile Number (For SMS)</label>
+                    <input type="number" id="pMobile" placeholder="9876543210">
+
+                    <label>Treatment Category</label>
+                    <select id="pDept" onchange="updateDoctors()">
+                        <option value="">-- Select Treatment --</option>
+                        <option value="General OPD">General OPD</option>
+                        <option value="Cardiology">Cardiology (Heart)</option>
+                        <option value="Pediatrics">Pediatrics (Child Care)</option>
+                        <option value="Dental Care">Dental Care</option>
+                    </select>
+
+                    <label>Consulting Doctor</label>
+                    <select id="pDoc">
+                        <option value="">-- Select Treatment First --</option>
+                    </select>
+
+                    <button class="btn-primary" onclick="registerPatient()">GENERATE TOKEN</button>
+                </div>
+
+                <div id="ticket" class="hidden ticket-slip">
+                    <div class="ticket-header">TOKEN GENERATED & SMS SENT</div>
+                    <div class="token-val" id="tNum">0</div>
+                    <p id="tDetails"></p>
+                    <button class="btn-print" onclick="window.print()">Print Slip</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-admin" class="view">
+            <div id="login-section" class="card">
+                <h3>Staff Authentication</h3>
+                <input type="password" id="adminPass" placeholder="Enter Password (admin123)">
+                <button class="btn-primary" onclick="checkLogin()">Login to Dashboard</button>
+            </div>
+
+            <div id="dashboard-section" class="hidden">
+                <div class="admin-header">
+                    <h2>Live Treatment Queues</h2>
+                    <button class="btn-reset" onclick="clearAll()">Reset All Data</button>
+                </div>
+                
+                <div id="treatmentGroups"></div>
+
+                <div class="dept-block missed-list">
+                    <div class="dept-title">Rescheduled / Late Patients</div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Token</th>
+                                <th>Patient Name</th>
+                                <th>Doctor</th>
+                                <th>Time Missed</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="skippedBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-tv" class="view">
+            <div class="tv-screen">
+                <div class="tv-header">NOW SERVING</div>
+                <div class="token-huge" id="tvToken">--</div>
+                <div class="tv-doctor" id="tvDoc">Welcome</div>
+                <div class="tv-patient" id="tvName">Ready to Assist</div>
+                
+                <div class="tv-next-container">
+                    <div class="tv-next-label">UPCOMING FOR THIS DOCTOR</div>
+                    <div id="tvNextList" class="tv-next-list">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
